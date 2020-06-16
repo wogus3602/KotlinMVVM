@@ -1,22 +1,31 @@
 package com.example.myapplication
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.*
+import com.example.myapplication.databinding.ActivityMainBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
+
+    override val layoutResourceId: Int
+        get() = R.layout.activity_main
+
+    override val viewModel: MainViewModel by viewModel()
+
+    override fun initStartView() {
+
+    }
+
+    override fun initDataBinding() {
+
+    }
+
+    override fun initAfterBinding() {
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val autotextView = findViewById<AutoCompleteTextView>(R.id.autoTextView)
-
-        val languages = resources.getStringArray(R.array.Languages)
-
-        val adapter = ArrayAdapter(this,
-            android.R.layout.simple_list_item_single_choice, languages)
-
-        autotextView.setAdapter(adapter)
     }
 }
