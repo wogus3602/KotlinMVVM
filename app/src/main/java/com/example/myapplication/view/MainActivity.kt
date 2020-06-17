@@ -1,8 +1,12 @@
-package com.example.myapplication
+package com.example.myapplication.view
 
 import android.os.Bundle
+import com.example.myapplication.BaseKotlinActivity
+import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
 
@@ -28,4 +32,10 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
         setContentView(R.layout.activity_main)
 
     }
+
+
+
+
+
+
 }
