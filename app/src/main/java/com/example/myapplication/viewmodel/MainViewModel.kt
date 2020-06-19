@@ -15,6 +15,7 @@ class MainViewModel(private val model : DataModel) : BaseKotlinViewModel() {
     private val TAG = "MainViewModel"
 
     private val _imageSearchResponseLiveData = MutableLiveData<ImageSearchResponse>()
+
     val imageSearchResponseLiveData: LiveData<ImageSearchResponse>
         get() = _imageSearchResponseLiveData
 
