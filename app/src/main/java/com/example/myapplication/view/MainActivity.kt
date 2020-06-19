@@ -1,6 +1,5 @@
 package com.example.myapplication.view
 
-import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.myapplication.BaseKotlinActivity
@@ -12,16 +11,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
-
     override val layoutResourceId: Int
         get() = R.layout.activity_main
-
     override val viewModel: MainViewModel by viewModel()
 
-
     private val mainSearchRecyclerViewAdapter: MainSearchRecyclerViewAdapter by inject()
+
+
 
     override fun initStartView() {
         main_activity_search_recycler_view.run {
@@ -48,12 +45,5 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
             viewModel.getImageSearch(main_activity_search_text_view.text.toString(), 1, 80)
         }
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-    }
-
 
 }
