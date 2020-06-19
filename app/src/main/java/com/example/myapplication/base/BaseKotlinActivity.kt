@@ -2,7 +2,6 @@ package com.example.myapplication
 
 import BaseKotlinViewModel
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -15,8 +14,7 @@ import com.google.android.material.snackbar.Snackbar
  * 2. 다시 빌드 수행 or 클린 빌드 후 다시 빌드 수행
  * 3. 이름 확인 : sbs_main_activity => ActivitySbsMainBinding
  */
-
-abstract class BaseKotlinActivity<T : ViewDataBinding, R : BaseKotlinViewModel> : AppCompatActivity(){
+abstract class BaseKotlinActivity<T : ViewDataBinding, R : BaseKotlinViewModel> : AppCompatActivity() {
 
     lateinit var viewDataBinding: T
 
@@ -54,16 +52,25 @@ abstract class BaseKotlinActivity<T : ViewDataBinding, R : BaseKotlinViewModel> 
 
     private var isSetBackButtonValid = false
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         viewDataBinding = DataBindingUtil.setContentView(this, layoutResourceId)
 
+        snackbarObserving()
         initStartView()
         initDataBinding()
         initAfterBinding()
     }
 
+    private fun snackbarObserving() {
+        viewModel.observeSnackbarMessage(this) {
+            Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_LONG).show()
+        }
+        viewModel.observeSnackbarMessageStr(this){
+            Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_LONG).show()
+        }
+    }
 
 
 }

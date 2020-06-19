@@ -1,5 +1,6 @@
 package com.example.myapplication.di
 
+import com.example.myapplication.MainSearchRecyclerViewAdapter
 import com.example.myapplication.model.DataModelImpl
 import com.example.myapplication.viewmodel.MainViewModel
 import org.koin.dsl.module.module
@@ -9,8 +10,6 @@ import com.example.myapplication.model.service.KakaoSearchService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
-
 
 //의존성 주입
 var retrofitPart = module{
@@ -21,6 +20,12 @@ var retrofitPart = module{
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(KakaoSearchService::class.java)
+    }
+}
+
+var adapterPart = module {
+    factory {
+        MainSearchRecyclerViewAdapter()
     }
 }
 
@@ -38,6 +43,7 @@ var viewModelPart = module {
 
 var myDiModule = listOf(
     retrofitPart,
+    adapterPart,
     modelPart,
     viewModelPart
 )

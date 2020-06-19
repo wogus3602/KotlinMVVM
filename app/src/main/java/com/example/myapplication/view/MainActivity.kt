@@ -1,14 +1,18 @@
 package com.example.myapplication.view
 
+import android.os.Bundle
+import android.os.PersistableBundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.myapplication.BaseKotlinActivity
 import com.example.myapplication.MainSearchRecyclerViewAdapter
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.di.myDiModule
 import com.example.myapplication.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
+import org.koin.android.ext.android.startKoin
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
@@ -17,8 +21,6 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
     override val viewModel: MainViewModel by viewModel()
 
     private val mainSearchRecyclerViewAdapter: MainSearchRecyclerViewAdapter by inject()
-
-
 
     override fun initStartView() {
         main_activity_search_recycler_view.run {
